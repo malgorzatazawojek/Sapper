@@ -118,12 +118,21 @@ public class MainPanel extends JFrame implements ActionListener, ChangeListener,
         		                if (pressed) {
         		                    if (SwingUtilities.isRightMouseButton(e)) {
         		                    	if(bf.getField(X, Y).getFlag()) {
+<<<<<<< Upstream, based on origin/master
         		                    	tmp.setBackground(Color.GREEN);
         		                    	System.out.println("Flag is on!'");
         		                    	}else {
             		                    	tmp.setBackground(null);
         		                    	}bf.getField(X,Y).setFlag();
         		                    	System.out.println("Flag is off!");
+=======
+        		                    	tmp.setText("F");
+        		                    	tmp.setBackground(Color.GREEN);
+        		                    	}else {
+            		                    	tmp.setText("");
+            		                    	tmp.setBackground(null);
+        		                    	}bf.getField(X,Y).setFlag();
+>>>>>>> 2e9fb9d sample changes
         		                    	}
         		                    else {
 
