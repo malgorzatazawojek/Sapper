@@ -18,7 +18,7 @@ public class SingleField {
 	  }
 	  
 	  public void setFlag() {
-		  flag=true;
+		  flag=!flag;
 	  }
 	  
 	  public boolean getFlag() {

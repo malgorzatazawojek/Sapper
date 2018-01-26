@@ -11,14 +11,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+<<<<<<< Upstream, based on origin/master
+=======
+import javax.swing.JRadioButton;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+>>>>>>> e4ece6b sample changes
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+
 
 import calc.BombField;
 
@@ -75,41 +86,119 @@ public class MainPanel extends JFrame implements ActionListener, ChangeListener,
         for(int j=0; j<panelSize;j++) {
         	for(int k=0;k<panelSize;k++) {
         		JButton tmp=new JButton();
+        		tmp.addMouseListener(
+        				new MouseAdapter() {
+        					boolean pressed;
+        					
+        		            @Override
+        		            public void mousePressed(MouseEvent e) {
+        		            	tmp.getModel().setArmed(true);
+        		            	tmp.getModel().setPressed(true);
+        		                pressed = true;
+        		            }
+
+        		            @Override
+        		            public void mouseReleased(MouseEvent e) {
+        		            	int X=0;
+       			        	 	int Y=0;
+ 			        	 
+       			             	for (int i = 0; i < fields.length; i++) { 
+       			             	    for (int j = 0; j < fields[i].length; j++) { 
+       			             	        if (fields[i][j] == tmp) { 
+       			             	        	X=j;
+       			             	        	Y=i;
+       			             	        }
+       			             	    }    
+       			             	}
+        		            	
+        		                //if(isRightButtonPressed) {underlyingButton.getModel().setPressed(true));
+        		            	tmp.getModel().setArmed(false);
+        		            	tmp.getModel().setPressed(false);
+
+        		                if (pressed) {
+        		                    if (SwingUtilities.isRightMouseButton(e)) {
+        		                    	if(bf.getField(X, Y).getFlag()) {
+        		                    	tmp.setText("F");
+        		                    	tmp.setBackground(Color.GREEN);
+        		                    	}else {
+            		                    	tmp.setText("");
+            		                    	tmp.setBackground(null);
+        		                    	}bf.getField(X,Y).setFlag();
+        		                    	}
+        		                    else {
+
+                			            if(!bf.getField(X,Y).getOpen()&&!bf.getField(X,Y).getFlag()){ 	
+                			             	if(bf.getField(X, Y).getMine()) {
+                    			             	tmp.setBackground(Color.RED);
+                			             		icon=new ImageIcon("looser.png");  
+                			             	    iconLabel.setIcon(icon);
+                			             	    //System.out.println("Mine!");
+                			             	    
+                			             	}else if(bf.getField(X, Y).getCount()>0) {
+                			             		String s=""+bf.getField(X, Y).getCount();
+                			             		tmp.setFont(new Font("Arial", Font.BOLD, 12));
+                			             		tmp.setText(s);
+                			             		tmp.setBackground(Color.LIGHT_GRAY);
+                			             		//System.out.println(s);
+                			             	}else {tmp.setBackground(Color.DARK_GRAY);}
+                			             	
+                			         }
+                			            if(!bf.getField(X,Y).getFlag()) {
+            			             	bf.getField(X, Y).setOpen(); }  
+                			         }
+        		                    }
+        		                
+        		                pressed = false;
+
+        		            }
+
+        		            @Override
+        		            public void mouseExited(MouseEvent e) {
+        		                pressed = false;
+        		            }
+
+        		            @Override
+        		            public void mouseEntered(MouseEvent e) {
+        		                pressed = true;
+        		            } 
+        					
+        					
+        				});
+        		
         		tmp.addActionListener(
         				new ActionListener(){
         			         @Override
         			         public void actionPerformed(ActionEvent e) {
-        			        	 int X=0;
-        			        	 int Y=0;
-  			        	 
-        			             	for (int i = 0; i < fields.length; i++) { 
-        			             	    for (int j = 0; j < fields[i].length; j++) { 
-        			             	        if (fields[i][j] == tmp) { 
-        			             	        	X=j;
-        			             	        	Y=i;
-        			             	        }
-        			             	    }    
-        			             	}
-        			            // if(isRightButtonPressed) {bf.getField(X,Y).setFlag(!bf.getField(X,Y).getFlag());}
-
-        			            if(!bf.getField(X,Y).getOpen()&&!bf.getField(X,Y).getFlag()){ 	
-        			             	if(bf.getField(X, Y).getMine()) {
-            			             	tmp.setBackground(Color.RED);
-        			             		icon=new ImageIcon("looser.png");  
-        			             	    iconLabel.setIcon(icon);
-        			             	    System.out.println("Mine!");
-        			             	    
-        			             	}else if(bf.getField(X, Y).getCount()>0) {
-        			             		String s=""+bf.getField(X, Y).getCount();
-        			             		tmp.setFont(new Font("Arial", Font.BOLD, 12));
-        			             		tmp.setText(s);
-        			             		tmp.setBackground(Color.LIGHT_GRAY);
-        			             		System.out.println(s);
-        			             	}else {tmp.setBackground(Color.DARK_GRAY);}
-        			             	
-        			         }
-        			            if(!bf.getField(X,Y).getFlag()) {
-    			             	bf.getField(X, Y).setOpen(); }  
+//        			        	 int X=0;
+//        			        	 int Y=0;
+//  			        	 
+//        			             	for (int i = 0; i < fields.length; i++) { 
+//        			             	    for (int j = 0; j < fields[i].length; j++) { 
+//        			             	        if (fields[i][j] == tmp) { 
+//        			             	        	X=j;
+//        			             	        	Y=i;
+//        			             	        }
+//        			             	    }    
+//        			             	}
+//        			            if(!bf.getField(X,Y).getOpen()&&!bf.getField(X,Y).getFlag()){ 	
+//        			             	if(bf.getField(X, Y).getMine()) {
+//            			             	tmp.setBackground(Color.RED);
+//        			             		icon=new ImageIcon("looser.png");  
+//        			             	    iconLabel.setIcon(icon);
+//        			             	    System.out.println("Mine!");
+//        			             	    
+//        			             	}else if(bf.getField(X, Y).getCount()>0) {
+//        			             		String s=""+bf.getField(X, Y).getCount();
+//        			             		tmp.setFont(new Font("Arial", Font.BOLD, 12));
+//        			             		tmp.setText(s);
+//        			             		tmp.setBackground(Color.LIGHT_GRAY);
+//        			             		System.out.println(s);
+//        			             	}else {tmp.setBackground(Color.DARK_GRAY);}
+//        			             	
+//        			         }
+//        			            if(!bf.getField(X,Y).getFlag()) {
+//    			             	bf.getField(X, Y).setOpen(); }  
+//        			         
         			         }}
         				);
         		fields[j][k]=tmp;
