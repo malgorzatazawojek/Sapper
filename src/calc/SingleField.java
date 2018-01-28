@@ -29,14 +29,17 @@ public class SingleField {
 		  return mine;
 	  }
 	  
+	  public void setMine() {
+		  mine=true;
+	  }
+	  
 	  public boolean getExploaded() {
 		  return exploded;
 	  }
 	  
-	  public void setMine() {
-		  mine=true;
+	  public void setExploaded() {
+		  exploded=true;
 	  }
-
 	  
 	  public int getCount() {
 		  return count;
