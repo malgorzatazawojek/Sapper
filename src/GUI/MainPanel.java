@@ -1,7 +1,10 @@
 package GUI;
 
+import java.awt.Button;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -16,16 +19,14 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-<<<<<<< Upstream, based on origin/master
-=======
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
->>>>>>> e4ece6b sample changes
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -118,28 +119,12 @@ public class MainPanel extends JFrame implements ActionListener, ChangeListener,
         		                if (pressed) {
         		                    if (SwingUtilities.isRightMouseButton(e)) {
         		                    	if(bf.getField(X, Y).getFlag()) {
-<<<<<<< Upstream, based on origin/master
-<<<<<<< Upstream, based on origin/master
         		                    	tmp.setBackground(Color.GREEN);
         		                    	System.out.println("Flag is on!'");
         		                    	}else {
             		                    	tmp.setBackground(null);
         		                    	}bf.getField(X,Y).setFlag();
         		                    	System.out.println("Flag is off!");
-=======
-        		                    	tmp.setText("F");
-=======
->>>>>>> f60bec0 test change2
-        		                    	tmp.setBackground(Color.GREEN);
-        		                    	System.out.println("Flag is on!'");
-        		                    	}else {
-            		                    	tmp.setBackground(null);
-        		                    	}bf.getField(X,Y).setFlag();
-<<<<<<< Upstream, based on origin/master
->>>>>>> 2e9fb9d sample changes
-=======
-        		                    	System.out.println("Flag is off!");
->>>>>>> f60bec0 test change2
         		                    	}
         		                    else {
 
